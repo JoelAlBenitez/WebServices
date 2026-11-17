@@ -1,0 +1,24 @@
+{
+  "name": "webservices",
+  "version": "1.0.0",
+  "description": "Este es un servicio web creado con express y node.js a modo de entrega de la asignatura de programación web del Instituto Tecnológico de las Américas ITLA. En entrega de la tarea 5 que consiste en la realización de un servicio web con las tecnologías antes mencionadas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoelAlBenitez/WebServices.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JoelAlBenitez/WebServices/issues"
+  },
+  "homepage": "https://github.com/JoelAlBenitez/WebServices#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
