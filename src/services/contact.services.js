@@ -4,13 +4,21 @@ const contacts = [];
 
 function listContacts(){
 
-    return contact;
+    return contacts;
 }
 
 function saveContacts(data){
 
-    const id = contacts.length + 1;
+    if(!data.nombre || !data.apellido || !data.telefono){
 
+        return {
+            error: true,
+            message: "Todos los campos son requeridos"
+        };
+    }
+
+
+    const id = contacts.length + 1; 
     const newContact = new Contact(
 
         id,
@@ -18,20 +26,31 @@ function saveContacts(data){
         data.apellido,
         data.telefono
     );
+    
     contacts.push(newContact);
-    return newContact;
+    
+    return {
+        error: false,
+        newContact
+    };
 }
 
 function searchContact(idS){
 
-     const contact =  contacts.find(x => x.id == idS.id);    
-     return contact != null ? contact : "Contacto no encontrado, verifique su consulta.";
+     const contact =  contacts.find(x => x.id == idS);    
+     return contact != null ? contact : "Contacto no encontrado.";
 }   
 
 function deleteContact(idD){
 
-    contacts.filter(x => x.id == idD.id);
-    return  `El contacto con ID ${idD} ha sido eliminado.`;
+    var index = contacts.findIndex(x => x.id == idD);
+    if(index  !== -1){
+
+        contacts.splice(index,1);
+        return  `El contacto con ID ${idD} ha sido eliminado.`;
+    }
+
+    return `Contacto no encontrado`;
 }
 
 module.exports ={

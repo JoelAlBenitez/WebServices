@@ -5,7 +5,6 @@ const router = express.Router();
 const contactServices = require('../services/contact.services');
 
 
-
 //rutas get
 
 router.get('/', (req, res) => {
@@ -15,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 
-        const contacts = contactServices.searchContact(req.body);
+        const contacts = contactServices.searchContact(req.params.id);
         res.json(contacts);
 });
 
@@ -23,15 +22,17 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 
-        const newContact = contactServices.saveContacts(req.body);
-        res.status(201).json(newContact);
+        const result = contactServices.saveContacts(req.body);
+        if(result.error)  {
+                res.status(400).json({message: result.message});
+        }      
+        res.status(201).json(result.newContact);
 });
 
-//delete
+//ruta delete
 
 router.delete('/:id', (req, res) => {
-
-    const message = contactServices.deleteContact(req.body);
+    const message = contactServices.deleteContact(req.params.id);
     res.json(message);
 });
 
